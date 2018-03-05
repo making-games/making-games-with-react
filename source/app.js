@@ -1,6 +1,8 @@
-import React from "react"
+import React, { Component } from "react"
 import { render } from "react-dom"
-import { Stage, Text } from "react-pixi-fiber"
+import { Stage } from "react-pixi-fiber"
+
+import { AnimatedPlayer } from "./player"
 
 const Game = props => {
   return (
@@ -9,11 +11,9 @@ const Game = props => {
       height={props.h}
       options={{ backgroundColor: 0x8bfa9f }}
     >
-      <Text
-        text="hello world"
-        x={props.x}
-        y={props.y}
-        style={{ fill: 0x000000 }}
+      <AnimatedPlayer
+        startX={props.w / 2}
+        startY={props.h / 2}
       />
     </Stage>
   )
