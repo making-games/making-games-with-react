@@ -3,6 +3,7 @@ import { render } from "react-dom"
 import { Stage } from "react-pixi-fiber"
 
 import { AnimatedPlayer } from "./player"
+import { state } from "./state"
 
 const Game = props => {
   return (
@@ -14,6 +15,7 @@ const Game = props => {
       <AnimatedPlayer
         startX={props.w / 2}
         startY={props.h / 2}
+        state={state}
       />
     </Stage>
   )

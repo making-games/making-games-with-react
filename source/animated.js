@@ -12,7 +12,7 @@ const Animated = Composed => {
 
     loop = () => {
       this.timer = requestAnimationFrame(this.loop)
-      this.decorated.animate()
+      this.decorated.animate(this.props.state)
     }
 
     render() {

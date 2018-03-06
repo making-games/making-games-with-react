@@ -18,16 +18,41 @@ class Player extends Component {
     this.state.y = this.props.startY
   }
 
-  animate = () => {
-    let nextX = this.state.x + 10
+  velocityX = 0
+  maximumVelocityX = 8
+  accelerationX = 2
+  frictionX = 0.9
 
-    if (nextX > window.innerWidth) {
-      nextX = 0
+  animate = state => {
+    // let nextX = this.state.x + 10
+
+    // if (nextX > window.innerWidth) {
+    //   nextX = 0
+    // }
+
+    // this.setState({
+    //   x: nextX,
+    // })
+
+    if (state.keys[65]) {
+      this.velocityX = Math.max(
+        this.velocityX - this.accelerationX,
+        this.maximumVelocityX * -1,
+      )
     }
 
-    this.setState({
-      x: nextX,
-    })
+    if (state.keys[68]) {
+      this.velocityX = Math.min(
+        this.velocityX + this.accelerationX,
+        this.maximumVelocityX,
+      )
+    }
+
+    this.velocityX *= this.frictionX
+
+    this.setState(state => ({
+      x: state.x + this.velocityX,
+    }))
   }
 
   render() {
