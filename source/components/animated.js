@@ -2,6 +2,14 @@ import React, { Component } from "react"
 
 const Animated = Composed => {
   return class extends Component {
+    get core() {
+      if (typeof this.decorated.core !== "undefined") {
+        return this.decorated.core
+      }
+
+      return this.decorated
+    }
+
     componentDidMount() {
       this.loop()
     }
@@ -12,7 +20,7 @@ const Animated = Composed => {
 
     loop = () => {
       this.timer = requestAnimationFrame(this.loop)
-      this.decorated.animate(this.props.state)
+      this.core.animate(this.props.state)
     }
 
     render() {
